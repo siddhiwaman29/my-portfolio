@@ -1,0 +1,2399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="description"
+    content="Siddhi Bharat Waman - Backend Software Developer specializing in Node.js, Express.js, Fastify, PostgreSQL and REST APIs."
+  />
+
+  <meta
+    name="keywords"
+    content="Siddhi Bharat Waman, Backend Developer, Node.js Developer, Express.js, Fastify, PostgreSQL, REST API"
+  />
+
+  <meta name="author" content="Siddhi Bharat Waman" />
+
+  <title>Siddhi Bharat Waman | Backend Software Developer</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Devicon -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+  />
+
+  <style>
+    :root {
+      --bg: #0b1120;
+      --bg-secondary: #111827;
+      --text: #f8fafc;
+      --text-secondary: #94a3b8;
+      --border: #1e293b;
+      --accent: #818cf8;
+      --accent-dark: #6366f1;
+      --accent-light: #1e1b4b;
+      --card-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      --nav-bg: rgba(11, 17, 32, 0.88);
+      --radius: 18px;
+    }
+
+    body.light {
+      --bg: #f8fafc;
+      --bg-secondary: #ffffff;
+      --text: #0f172a;
+      --text-secondary: #64748b;
+      --border: #e2e8f0;
+      --accent: #6366f1;
+      --accent-dark: #4f46e5;
+      --accent-light: #eef2ff;
+      --card-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+      --nav-bg: rgba(255, 255, 255, 0.88);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: var(--nav-bg);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      font-size: 1rem;
+      transition: 0.25s;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: rotate(15deg);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 0;
+      color: var(--text);
+      font-size: 1.5rem;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 100px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: var(--accent);
+      opacity: 0.08;
+      filter: blur(100px);
+      border-radius: 50%;
+      top: 5%;
+      right: -100px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      padding: 8px 14px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1.05;
+      letter-spacing: -4px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-role {
+      font-size: clamp(1.25rem, 3vw, 1.7rem);
+      font-weight: 600;
+      margin-bottom: 20px;
+      min-height: 45px;
+    }
+
+    .typing,
+    .cursor {
+      color: var(--accent);
+    }
+
+    .cursor {
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .hero-description {
+      max-width: 700px;
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 35px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 22px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-link {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      transition: 0.25s;
+    }
+
+    .social-link:hover {
+      color: white;
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 55px;
+    }
+
+    .section-label {
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .section-description {
+      max-width: 650px;
+      margin: 15px auto 0;
+      color: var(--text-secondary);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+
+    .info-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+    }
+
+    .info-card h3 {
+      margin-bottom: 20px;
+    }
+
+    .education-item {
+      border-left: 2px solid var(--accent);
+      padding-left: 18px;
+      margin-bottom: 24px;
+    }
+
+    .education-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .education-item h4 {
+      font-size: 1rem;
+      margin-bottom: 3px;
+    }
+
+    .education-item p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* ================= SKILLS ================= */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .skill-card {
+      padding: 28px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: 0.3s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-7px);
+      border-color: var(--accent);
+      box-shadow: var(--card-shadow);
+    }
+
+    .skill-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--accent-light);
+      border: 1px solid rgba(129, 140, 248, 0.15);
+      margin-bottom: 18px;
+      transition: 0.3s;
+    }
+
+    .skill-card:hover .skill-icon {
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    .skill-icon i {
+      font-size: 32px;
+    }
+
+    .node-icon {
+      color: #68a063;
+    }
+
+    .database-icon {
+      color: #336791;
+    }
+
+    .tools-icon {
+      color: #f05032;
+    }
+
+    .frontend-icon {
+      color: #61dafb;
+    }
+
+    .soft-icon {
+      color: #a78bfa;
+    }
+
+    .language-icon {
+      color: #fbbf24;
+    }
+
+    .skill-card h3 {
+      margin-bottom: 15px;
+    }
+
+    .skill-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      font-size: 0.78rem;
+      padding: 6px 10px;
+      border-radius: 7px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      transition: 0.2s;
+    }
+
+    .chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .timeline {
+      max-width: 850px;
+      margin: auto;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 65px;
+      margin-bottom: 45px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 9px;
+      top: 5px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 5px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    .timeline-card {
+      padding: 28px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+    }
+
+    .timeline-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+    }
+
+    .company {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .timeline-date {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+    }
+
+    .timeline-card ul {
+      padding-left: 20px;
+      color: var(--text-secondary);
+    }
+
+    .timeline-card li {
+      margin-bottom: 9px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      padding: 30px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      min-height: 350px;
+      transition: 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: var(--card-shadow);
+    }
+
+    .project-number {
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .project-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+    }
+
+    .project-card p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      margin-bottom: 20px;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: auto;
+      margin-bottom: 22px;
+    }
+
+    .tech-tag {
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 5px 9px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .project-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .project-buttons a {
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: 0.25s;
+    }
+
+    .project-buttons a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 40px;
+    }
+
+    .contact-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .contact-info > p {
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 15px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--text-secondary);
+    }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .contact-item a:hover {
+      color: var(--accent);
+    }
+
+    .contact-form {
+      padding: 30px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+      transition: 0.25s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+
+    .form-group textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      width: 100%;
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 0;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    footer span {
+      color: var(--accent);
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+    .resume-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .resume-modal.active {
+      display: flex;
+    }
+
+    .resume-modal-content {
+      width: min(1100px, 100%);
+      height: min(90vh, 900px);
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .resume-modal-header {
+      height: 58px;
+      background: #111827;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 15px 0 20px;
+      flex-shrink: 0;
+    }
+
+    .resume-modal-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .resume-modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .resume-modal-actions a,
+    .resume-close {
+      border: 1px solid #374151;
+      background: #1f2937;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 7px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .resume-modal-actions a:hover,
+    .resume-close:hover {
+      background: #374151;
+    }
+
+    .resume-frame-wrapper {
+      flex: 1;
+      position: relative;
+      background: #525252;
+    }
+
+    .resume-frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      background: white;
+    }
+
+    .resume-fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+      background: white;
+      color: #111827;
+    }
+
+    .resume-fallback-content {
+      max-width: 500px;
+    }
+
+    .resume-fallback h3 {
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+    }
+
+    .resume-fallback p {
+      color: #64748b;
+      margin-bottom: 20px;
+    }
+
+    .resume-fallback a {
+      display: inline-block;
+      background: #6366f1;
+      color: white;
+      padding: 11px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 900px) {
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        padding: 25px;
+        flex-direction: column;
+        align-items: flex-start;
+        background: var(--bg-secondary);
+        border-bottom: 1px solid var(--border);
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+      section {
+        padding: 75px 0;
+      }
+
+      .logo {
+        font-size: 1rem;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        letter-spacing: -2px;
+      }
+
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .timeline-item {
+        padding-left: 50px;
+      }
+
+      .timeline::before {
+        left: 13px;
+      }
+
+      .timeline-dot {
+        left: 4px;
+      }
+
+      .contact-form {
+        padding: 22px;
+      }
+
+      .resume-modal {
+        padding: 0;
+      }
+
+      .resume-modal-content {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+      }
+
+      .resume-modal-header {
+        height: 55px;
+      }
+
+      .resume-modal-title {
+        font-size: 0.8rem;
+      }
+
+      .resume-modal-actions a {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+
+  <header class="navbar">
+    <div class="container nav-container">
+
+      <a href="#home" class="logo">
+        Siddhi Bharat Waman<span>.</span>
+      </a>
+
+      <div class="nav-right">
+
+        <nav aria-label="Main navigation">
+          <ul class="nav-links" id="navLinks">
+
+            <li>
+              <a href="#home">Home</a>
+            </li>
+
+            <li>
+              <a href="#about">About</a>
+            </li>
+
+            <li>
+              <a href="#skills">Skills</a>
+            </li>
+
+            <li>
+              <a href="#experience">Experience</a>
+            </li>
+
+            <li>
+              <a href="#projects">Projects</a>
+            </li>
+
+            <li>
+              <a href="#contact">Contact</a>
+            </li>
+
+          </ul>
+        </nav>
+
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="Toggle light and dark theme"
+          title="Toggle theme"
+          type="button"
+        >
+          ☀
+        </button>
+
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          type="button"
+        >
+          ☰
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero" id="home">
+
+      <div class="container">
+
+        <div class="hero-content reveal">
+
+          <div class="hero-badge">
+            <span class="status-dot"></span>
+            Available for opportunities
+          </div>
+
+          <h1>
+            Hi, I'm
+            <span>Siddhi Bharat Waman</span>
+          </h1>
+
+          <div class="hero-role">
+            <span class="typing" id="typingText"></span>
+            <span class="cursor">|</span>
+          </div>
+
+          <p class="hero-description">
+            Backend Software Developer with 1+ year
+            of experience designing and building scalable
+            RESTful APIs using Node.js, Express.js and
+            Fastify. Skilled in PostgreSQL, MySQL,
+            JWT authentication and third-party API
+            integrations.
+          </p>
+
+          <div class="hero-buttons">
+
+            <a
+              href="./resume.pdf.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+              id="viewResumeBtn"
+            >
+              👁 View Resume
+            </a>
+
+            <!-- <a
+              href="./resume.pdf"
+              download="resume.pdf"
+              class="btn btn-secondary"
+            >
+              ↓ Download Resume
+            </a> -->
+
+            <a
+              href="#contact"
+              class="btn btn-secondary"
+            >
+              Contact Me →
+            </a>
+
+          </div>
+
+          <div class="social-links">
+
+            <a
+              class="social-link"
+              href="https://github.com/siddhiwaman29"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              GH
+            </a>
+
+            <a
+              class="social-link"
+              href="https://linkedin.com/in/siddhi-bharat-waman"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              in
+            </a>
+
+            <a
+              class="social-link"
+              href="mailto:wamansiddhi12@gmail.com"
+              aria-label="Email"
+            >
+              @
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+    <section id="about">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label">
+            About Me
+          </div>
+
+          <h2 class="section-title">
+            Building reliable backend systems.
+          </h2>
+
+          <p class="section-description">
+            Passionate about creating clean APIs,
+            efficient database solutions and scalable
+            backend architectures.
+          </p>
+
+        </div>
+
+        <div class="about-grid">
+
+          <div class="about-text reveal">
+
+            <p>
+              I am a Backend Software Developer
+              specializing in Node.js, Express.js
+              and Fastify with 1+ year of professional
+              experience developing and maintaining
+              production-ready backend systems.
+            </p>
+
+            <p>
+              My experience includes RESTful API
+              development, CRUD operations,
+              PostgreSQL and MySQL database design,
+              JWT authentication, role-based
+              authorization and third-party API
+              integrations.
+            </p>
+
+            <p>
+              I enjoy solving technical problems,
+              improving application performance and
+              collaborating with frontend developers
+              to build reliable and user-friendly
+              applications.
+            </p>
+
+          </div>
+
+          <div class="info-card reveal">
+
+            <h3>Education</h3>
+
+            <div class="education-item">
+
+              <h4>
+                MCA — Pursuing
+              </h4>
+
+              <p>
+                Savitribai Phule Pune University (SPPU)
+              </p>
+
+            </div>
+
+            <div class="education-item">
+
+              <h4>
+                BCA
+              </h4>
+
+              <p>
+                University of Mysore
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+    <section id="skills">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label">
+            Skills
+          </div>
+
+          <h2 class="section-title">
+            My technical toolkit.
+          </h2>
+
+          <p class="section-description">
+            Technologies and tools I use to build
+            backend applications and production-ready
+            systems.
+          </p>
+
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-card reveal">
+
+            <div
+              class="skill-icon node-icon"
+              title="Node.js"
+            >
+              <i
+                class="devicon-nodejs-plain"
+                aria-hidden="true"
+              ></i>
+            </div>
+
+            <h3>Backend</h3>
+
+            <div class="skill-chips">
+
+              <span class="chip">Node.js</span>
+              <span class="chip">Express.js</span>
+              <span class="chip">Fastify</span>
+              <span class="chip">REST APIs</span>
+              <span class="chip">JWT Authentication</span>
+              <span class="chip">Role-Based Authorization</span>
+
+            </div>
+
+          </div>
+          <div class="skill-card reveal">
+
+            <div
+              class="skill-icon database-icon"
+              title="PostgreSQL"
+            >
+              <i
+                class="devicon-postgresql-plain"
+                aria-hidden="true"
+              ></i>
+            </div>
+
+            <h3>Databases</h3>
+
+            <div class="skill-chips">
+
+              <span class="chip">PostgreSQL</span>
+              <span class="chip">MySQL</span>
+              <span class="chip">Database Design</span>
+              <span class="chip">SQL</span>
+              <span class="chip">Query Optimization</span>
+
+            </div>
+
+          </div>
+          <div class="skill-card reveal">
+
+            <div
+              class="skill-icon tools-icon"
+              title="Git"
+            >
+              <i
+                class="devicon-git-plain"
+                aria-hidden="true"
+              ></i>
+            </div>
+
+            <h3>Tools</h3>
+
+            <div class="skill-chips">
+
+              <span class="chip">Git</span>
+              <span class="chip">Bitbucket</span>
+              <span class="chip">Jira</span>
+              <span class="chip">Postman</span>
+              <span class="chip">Swagger</span>
+
+            </div>
+
+          </div>
+          <div class="skill-card reveal">
+
+            <div
+              class="skill-icon frontend-icon"
+              title="React"
+            >
+              <i
+                class="devicon-react-original"
+                aria-hidden="true"
+              ></i>
+            </div>
+
+            <h3>Frontend</h3>
+
+            <div class="skill-chips">
+
+              <span class="chip">HTML5</span>
+              <span class="chip">CSS3</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">React</span>
+              <span class="chip">Angular</span>
+
+            </div>
+
+          </div>
+          <div class="skill-card reveal">
+
+            <div
+              class="skill-icon soft-icon"
+              title="Teamwork"
+            >
+              <i
+                class="devicon-trello-plain"
+                aria-hidden="true"
+              ></i>
+            </div>
+
+            <h3>Soft Skills</h3>
+
+            <div class="skill-chips">
+
+              <span class="chip">Problem Solving</span>
+              <span class="chip">Teamwork</span>
+              <span class="chip">Communication</span>
+              <span class="chip">Time Management</span>
+
+            </div>
+
+          </div>
+          <div class="skill-card reveal">
+
+            <div
+              class="skill-icon language-icon"
+              title="Languages"
+            >
+              <i
+                class="devicon-javascript-plain"
+                aria-hidden="true"
+              ></i>
+            </div>
+
+            <h3>Languages</h3>
+
+            <div class="skill-chips">
+
+              <span class="chip">English</span>
+              <span class="chip">Marathi</span>
+              <span class="chip">Hindi</span>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+    <section id="experience">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label">
+            Experience
+          </div>
+
+          <h2 class="section-title">
+            My professional journey.
+          </h2>
+
+          <p class="section-description">
+            From backend development internship
+            to full-time software development.
+          </p>
+
+        </div>
+
+        <div class="timeline">
+
+          <div class="timeline-item reveal">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card">
+
+              <h3>
+                Software Developer
+              </h3>
+
+              <div class="company">
+                The Baap Company
+              </div>
+
+              <div class="timeline-date">
+                6 Months Internship + 1 Year Full-Time
+              </div>
+
+              <ul>
+
+                <li>
+                  Developed and maintained RESTful APIs
+                  using Node.js, Express.js and Fastify
+                  for multiple production modules.
+                </li>
+
+                <li>
+                  Designed and implemented CRUD APIs
+                  supporting several core business modules.
+                </li>
+
+                <li>
+                  Built and optimized database schemas
+                  and queries using PostgreSQL and MySQL.
+                </li>
+
+                <li>
+                  Implemented JWT-based authentication
+                  and role-based authorization.
+                </li>
+
+                <li>
+                  Integrated third-party APIs and improved
+                  application performance and reliability.
+                </li>
+
+                <li>
+                  Diagnosed and resolved production issues,
+                  improving API efficiency and stability.
+                </li>
+
+                <li>
+                  Collaborated closely with frontend
+                  developers for smooth API integration.
+                </li>
+
+                <li>
+                  Worked in an Agile environment using
+                  Git, Bitbucket, Jira, Postman and Swagger.
+                </li>
+
+                <li>
+                  Started as a Backend Developer Intern
+                  and was retained full-time.
+                </li>
+
+              </ul>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+    <section id="projects">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label">
+            Projects
+          </div>
+
+          <h2 class="section-title">
+            Things I've worked on.
+          </h2>
+
+          <p class="section-description">
+            A selection of applications and business
+            systems I've contributed to.
+          </p>
+
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card reveal">
+
+            <div class="project-number">
+              01 / PROJECT
+            </div>
+
+            <h3>
+              Opinion App
+            </h3>
+
+            <p>
+              Mobile application for creating and
+              participating in polls and sharing opinions.
+              Built a secure backend for authentication,
+              response management and real-time results.
+            </p>
+
+            <div class="project-tech">
+
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">Express.js</span>
+              <span class="tech-tag">PostgreSQL</span>
+
+            </div>
+
+            <div class="project-buttons">
+
+              <a href="#" onclick="return false;">
+                GitHub ↗
+              </a>
+
+              <a href="#" onclick="return false;">
+                Live Demo ↗
+              </a>
+
+            </div>
+
+          </article>
+
+          <article class="project-card reveal">
+
+            <div class="project-number">
+              02 / PROJECT
+            </div>
+
+            <h3>
+              ERP Project — Enterprise Resource Planning
+            </h3>
+
+            <p>
+              Enterprise Resource Planning system
+              containing React screens, Angular dashboards
+              and workflows, reusable components,
+              validations and API integrations.
+            </p>
+
+            <div class="project-tech">
+
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Angular</span>
+              <span class="tech-tag">REST APIs</span>
+              <span class="tech-tag">JavaScript</span>
+
+            </div>
+
+            <div class="project-buttons">
+
+              <a href="#" onclick="return false;">
+                GitHub ↗
+              </a>
+
+              <a href="#" onclick="return false;">
+                Live Demo ↗
+              </a>
+
+            </div>
+
+          </article>
+
+          <!-- PROJECT 3 -->
+
+          <article class="project-card reveal">
+
+            <div class="project-number">
+              03 / PROJECT
+            </div>
+
+            <h3>
+              VMS Project — Vendor Management System
+            </h3>
+
+            <p>
+              Vendor and Time-Slot Management System
+              featuring vendor management, interview
+              scheduling, dynamic time-slot creation,
+              validations, time-zone mapping and
+              search filters.
+            </p>
+
+            <div class="project-tech">
+
+              <span class="tech-tag">Angular</span>
+              <span class="tech-tag">PrimeNG</span>
+              <span class="tech-tag">ng-select</span>
+              <span class="tech-tag">JavaScript</span>
+
+            </div>
+
+            <div class="project-buttons">
+
+              <a href="#" onclick="return false;">
+                GitHub ↗
+              </a>
+
+              <a href="#" onclick="return false;">
+                Live Demo ↗
+              </a>
+
+            </div>
+
+          </article>
+
+          <!-- PROJECT 4 -->
+
+          <article class="project-card reveal">
+
+            <div class="project-number">
+              04 / PROJECT
+            </div>
+
+            <h3>
+              Project & Workplace Management
+            </h3>
+
+            <p>
+              Backend platform for employee task
+              management, attendance and workplace
+              resources. Includes task assignment,
+              status tracking, deadlines, desk booking
+              and meeting-room scheduling.
+            </p>
+
+            <div class="project-tech">
+
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">Express.js</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">MySQL</span>
+
+            </div>
+
+            <div class="project-buttons">
+
+              <a href="#" onclick="return false;">
+                GitHub ↗
+              </a>
+
+              <a href="#" onclick="return false;">
+                Live Demo ↗
+              </a>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+
+    <section id="contact">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label">
+            Contact
+          </div>
+
+          <h2 class="section-title">
+            Let's build something.
+          </h2>
+
+          <p class="section-description">
+            Have a project, opportunity or just want
+            to connect? Feel free to reach out.
+          </p>
+
+        </div>
+
+        <div class="contact-grid">
+
+          <div class="contact-info reveal">
+
+            <h3>
+              Get in touch
+            </h3>
+
+            <p>
+              I'm open to discussing backend development
+              opportunities, projects and interesting
+              technical challenges.
+            </p>
+
+            <div class="contact-list">
+
+              <div class="contact-item">
+
+                <div class="contact-icon">
+                  @
+                </div>
+
+                <a href="mailto:wamansiddhi12@gmail.com">
+                  wamansiddhi12@gmail.com
+                </a>
+
+              </div>
+
+              <div class="contact-item">
+
+                <div class="contact-icon">
+                  ☎
+                </div>
+
+                <a href="tel:+918459777205">
+                  +91 8459777205
+                </a>
+
+              </div>
+
+              <div class="contact-item">
+
+                <div class="contact-icon">
+                  in
+                </div>
+
+                <a
+                  href="https://linkedin.com/in/siddhi-bharat-waman"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn Profile
+                </a>
+
+              </div>
+
+              <div class="contact-item">
+
+                <div class="contact-icon">
+                  GH
+                </div>
+
+                <a
+                  href="https://github.com/siddhiwaman29"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub Profile
+                </a>
+
+              </div>
+
+              <div class="contact-item">
+
+                <div class="contact-icon">
+                  📍
+                </div>
+
+                <span>
+                  Sangamner, Maharashtra, India
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- CONTACT FORM -->
+
+          <form
+            class="contact-form reveal"
+            action="https://formspree.io/f/YOUR_FORM_ID"
+            method="POST"
+          >
+
+            <div class="form-group">
+
+              <label for="name">
+                Name
+              </label>
+
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your name"
+                required
+              />
+
+            </div>
+
+            <div class="form-group">
+
+              <label for="email">
+                Email
+              </label>
+
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="your@email.com"
+                required
+              />
+
+            </div>
+
+            <div class="form-group">
+
+              <label for="subject">
+                Subject
+              </label>
+
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="Project discussion"
+                required
+              />
+
+            </div>
+
+            <div class="form-group">
+
+              <label for="message">
+                Message
+              </label>
+
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Write your message..."
+                required
+              ></textarea>
+
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary form-submit"
+            >
+              Send Message →
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    <div class="container">
+
+      <p>
+        ©
+        <span id="year"></span>
+        Siddhi Bharat Waman.
+        Built with HTML, CSS & JavaScript.
+      </p>
+
+    </div>
+
+  </footer>
+
+  <!-- ================= RESUME MODAL ================= -->
+
+  <div
+    class="resume-modal"
+    id="resumeModal"
+    aria-hidden="true"
+  >
+
+    <div class="resume-modal-content">
+
+      <div class="resume-modal-header">
+
+        <div class="resume-modal-title">
+          Siddhi Bharat Waman — Resume
+        </div>
+
+        <div class="resume-modal-actions">
+
+          <a
+            href="./resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open ↗
+          </a>
+
+          <a
+            href="./resume.pdf"
+            download="Siddhi-Bharat-Waman-Resume.pdf"
+          >
+            Download ↓
+          </a>
+
+          <button
+            type="button"
+            class="resume-close"
+            id="resumeClose"
+          >
+            ✕
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="resume-frame-wrapper">
+
+        <iframe
+          id="resumeFrame"
+          class="resume-frame"
+          title="Siddhi Bharat Waman Resume"
+          src="about:blank"
+        ></iframe>
+
+        <div
+          class="resume-fallback"
+          id="resumeFallback"
+        >
+
+          <div class="resume-fallback-content">
+
+            <h3>
+              Resume PDF could not be displayed
+            </h3>
+
+            <p>
+              Please make sure your actual PDF file is
+              named <strong>resume.pdf</strong> and is
+              placed in the same folder as index.html.
+            </p>
+
+            <a
+              href="./resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open Resume
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script>
+
+    /* ================= MOBILE MENU ================= */
+
+    const menuToggle =
+      document.getElementById("menuToggle");
+
+    const navLinks =
+      document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+
+      navLinks.classList.toggle("active");
+
+      const isOpen =
+        navLinks.classList.contains("active");
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
+
+      menuToggle.textContent =
+        isOpen ? "✕" : "☰";
+
+    });
+
+    document
+      .querySelectorAll(".nav-links a")
+      .forEach((link) => {
+
+        link.addEventListener("click", () => {
+
+          navLinks.classList.remove("active");
+
+          menuToggle.textContent = "☰";
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        });
+
+      });
+
+
+    /* ================= THEME ================= */
+
+    const themeToggle =
+      document.getElementById("themeToggle");
+
+    const savedTheme =
+      localStorage.getItem("portfolio-theme");
+
+    if (savedTheme === "light") {
+
+      document.body.classList.add("light");
+
+      themeToggle.textContent = "☾";
+
+    } else {
+
+      document.body.classList.remove("light");
+
+      themeToggle.textContent = "☀";
+
+    }
+
+    themeToggle.addEventListener("click", () => {
+
+      document.body.classList.toggle("light");
+
+      const isLight =
+        document.body.classList.contains("light");
+
+      themeToggle.textContent =
+        isLight ? "☾" : "☀";
+
+      localStorage.setItem(
+        "portfolio-theme",
+        isLight ? "light" : "dark"
+      );
+
+    });
+
+
+    /* ================= TYPING EFFECT ================= */
+
+    const typingText =
+      document.getElementById("typingText");
+
+    const roles = [
+      "Backend Software Developer",
+      "Node.js Developer",
+      "REST API Developer",
+      "Fastify Developer"
+    ];
+
+    let roleIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function typeEffect() {
+
+      const currentRole =
+        roles[roleIndex];
+
+      if (!deleting) {
+
+        typingText.textContent =
+          currentRole.substring(
+            0,
+            charIndex + 1
+          );
+
+        charIndex++;
+
+        if (
+          charIndex ===
+          currentRole.length
+        ) {
+
+          deleting = true;
+
+          setTimeout(
+            typeEffect,
+            1600
+          );
+
+          return;
+        }
+
+      } else {
+
+        typingText.textContent =
+          currentRole.substring(
+            0,
+            charIndex - 1
+          );
+
+        charIndex--;
+
+        if (charIndex === 0) {
+
+          deleting = false;
+
+          roleIndex =
+            (roleIndex + 1) %
+            roles.length;
+
+        }
+
+      }
+
+      setTimeout(
+        typeEffect,
+        deleting ? 50 : 90
+      );
+
+    }
+
+    typeEffect();
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+    const revealObserver =
+      new IntersectionObserver(
+        (entries, observer) => {
+
+          entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("active");
+
+              observer.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+    revealElements.forEach((element) => {
+
+      revealObserver.observe(element);
+
+    });
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    const sections =
+      document.querySelectorAll("section[id]");
+
+    const navigationLinks =
+      document.querySelectorAll(".nav-links a");
+
+    window.addEventListener("scroll", () => {
+
+      let current = "";
+
+      sections.forEach((section) => {
+
+        const sectionTop =
+          section.offsetTop - 120;
+
+        if (
+          window.scrollY >= sectionTop
+        ) {
+
+          current =
+            section.getAttribute("id");
+
+        }
+
+      });
+
+      navigationLinks.forEach((link) => {
+
+        link.style.color = "";
+
+        if (
+          link.getAttribute("href") ===
+          "#" + current
+        ) {
+
+          link.style.color =
+            "var(--accent)";
+
+        }
+
+      });
+
+    });
+
+    const viewResumeBtn =
+      document.getElementById("viewResumeBtn");
+
+    const resumeModal =
+      document.getElementById("resumeModal");
+
+    const resumeClose =
+      document.getElementById("resumeClose");
+
+    const resumeFrame =
+      document.getElementById("resumeFrame");
+
+    const resumeFallback =
+      document.getElementById("resumeFallback");
+
+
+    function openResume() {
+
+      resumeModal.classList.add("active");
+
+      resumeModal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.classList.add("no-scroll");
+
+      resumeFallback.style.display = "none";
+
+      resumeFrame.src =
+        "./resume.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH";
+
+    }
+
+
+    function closeResume() {
+
+      resumeModal.classList.remove("active");
+
+      resumeModal.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.classList.remove("no-scroll");
+
+      /*
+        Reset iframe after closing.
+        This avoids unnecessary PDF loading.
+      */
+
+      setTimeout(() => {
+
+        if (
+          !resumeModal.classList.contains("active")
+        ) {
+
+          resumeFrame.src = "/resume.pdf";
+
+        }
+
+      }, 200);
+
+    }
+
+
+    resumeClose.addEventListener(
+      "click",
+      closeResume
+    );
+
+
+    /* Close when clicking outside */
+
+    resumeModal.addEventListener(
+      "click",
+      (event) => {
+
+        if (
+          event.target === resumeModal
+        ) {
+
+          closeResume();
+
+        }
+
+      }
+    );
+
+
+    /* Close with ESC */
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+
+        if (
+          event.key === "Escape" &&
+          resumeModal.classList.contains("active")
+        ) {
+
+          closeResume();
+
+        }
+
+      }
+    );
+
+
+    /*
+      If iframe cannot display the PDF,
+      show fallback message.
+    */
+
+    resumeFrame.addEventListener(
+      "load",
+      () => {
+
+        /*
+          We don't force fallback here because
+          Chrome's internal PDF viewer may not expose
+          its document state to JavaScript.
+        */
+
+        resumeFallback.style.display = "none";
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
